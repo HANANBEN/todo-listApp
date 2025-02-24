@@ -64,12 +64,51 @@ class TodoList extends Component {
 
 
 
+        addTodo = () => {
+                 const lastId= this.state.TodoListData.slice(-1)[0].id; 
+                  console.log("last element id :" , lastId);
+                 let newItemId=lastId + 1; 
+
+
+                const newItem=   {
+                    id:newItemId  , etat:PROGRESS_STATE.TO_DO
+                    };
+                this.setState({ TodoListData : [ ...this.state.TodoListData , newItem
+                  
+
+
+        ] } );
+                
+                }
+            
+
+
+              updateTodo = (updatedtodo)=>{
+                          const newtodos=this.state.TodoListData.map(
+                            todo => {
+
+                              if(todo.id == updatedtodo.id) return updatedtodo;
+
+                              return todo
+
+                            }
+
+                          )
+                   this.setState({TodoListData : newtodos})                    
+
+              }  
 
 render(){
 
 return (
-  <div className=" relative place-items-center min-h-screen mt-10 " >
-    <h2 class="text-4xl font-extrabold dark:text-white">Todo List :</h2>
+  <div className=" relative place-items-center min-h-screen mt-10 border-purple-500  " >
+    <h2 className="text-4xl font-extrabold dark:text-white" >Todo List :</h2>
+
+    <button type="submit" className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 mt-7"
+    
+    onClick={this.addTodo}
+    
+    >Add to do</button>
      {
     this.state.TodoListData.map( todo => {
         console.log(todo)
@@ -78,7 +117,7 @@ return (
         <div className="w-full max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 m-4 mt-5 mb-5 w-1000"
         style={{display :"flex" , gap: "10px"}}
         >
-        <Todo  key={todo.id} deleteTodo={this.deleteToDo} label={todo.label}  etat={todo.etat} id={todo.id}  />
+        <Todo  key={todo.id} deleteTodo={this.deleteTodo}   updateTodo={this.updateTodo} label={todo.label}  etat={todo.etat} id={todo.id}  />
         </div>
         )
       

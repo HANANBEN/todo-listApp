@@ -6,40 +6,29 @@ import { Component } from "react";
 class Todo extends Component{
 
 
-    constructor(props){
-
-        super(props);
-       
-    this.state =
-    {
-        etat:props.etat,
-        label : props.label,
-
-
-    }
 
 
 
 
-    }
-
+    
 
     OnchangeState = ({target: {value : newEtat}}) => {
         
-        this.setState({etat : newEtat});
-    
+        //this.setState({etat : newEtat});
+         this.props.updateTodo({...this.props,etat:newEtat})
     }
 
     OnchangeLabel = ({target: {value : newLabel}}) => {
         console.log(newLabel);
         
-        this.setState({label : newLabel});
-    
+        //this.setState({label : newLabel});
+        this.props.updateTodo({...this.props ,  label:newLabel})
+
     }
 
     handleDeleteTodo = () => {
 
-        console.log("id of the todo that was clicked  from the child comp:" , this.props.id)
+        console.log("id of the todo that was clicked  from the child comp:" , this.props.id);
 
         this.props.deleteTodo(this.props.id); 
     }
@@ -47,8 +36,8 @@ class Todo extends Component{
 render(){
 
 
-    const {label} = this.state; 
-    const {etat} = this.state
+    const {label} = this.props; 
+    const {etat} = this.props;
 
     console.log({props : this.props});
 
