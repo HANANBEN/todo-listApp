@@ -18,6 +18,9 @@ isLoading:false,
 const todoReducer = (state = initialState , action) => {
 
 
+    console.log({state , action});
+
+
     return state;
 }
 
