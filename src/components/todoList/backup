@@ -1,0 +1,75 @@
+  
+        deleteToDo = (id) => {
+
+          /*
+            If you modify this.state.TodoListData directly 
+            (without setState), React won’t re-render the component.
+
+
+
+            here is why ze need the this.setState : 
+
+            React does the following:
+
+              1.Creates a new state object → { TodoListData: filteredTodoList }
+              2.Schedules a re-render of the component.
+              3.Updates the UI to reflect the changes.
+          
+          */
+            const filteredTodoList = this.props.TodoListData.filter((todo) =>
+                todo.id !== id
+); 
+
+
+
+            /**
+             * filter() creates a new array because:
+
+             React follows immutability principles.
+             Modifying the original state directly is bad practice in React.
+             A new array triggers a re-render in React when used with setState.
+             * 
+             * 
+             * 
+             */
+            this.setState({TodoListData : filteredTodoList});
+            
+            console.log("the id that is passed by the parent component: " , id); 
+
+        }
+
+
+
+        addTodo = () => {
+                 const lastId= this.props.TodoListData.slice(-1)[0].id; 
+                  console.log("last element id :" , lastId);
+                 let newItemId=lastId + 1; 
+
+
+                const newItem=   {
+                    id:newItemId  , etat:PROGRESS_STATE.TO_DO
+                    };
+                this.setState({ TodoListData : [ ...this.state.TodoListData , newItem
+                  
+
+
+        ] } );
+                
+                }
+            
+
+
+              updateTodo = (updatedtodo)=>{
+                          const newtodos=this.state.TodoListData.map(
+                            todo => {
+
+                              if(todo.id == updatedtodo.id) return updatedtodo;
+
+                              return todo
+
+                            }
+
+                          )
+                   this.setState({TodoListData : newtodos})                    
+
+              }  

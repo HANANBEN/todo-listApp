@@ -1,5 +1,6 @@
 import { Component } from "react";
-
+import { deleteTodo , updatedTodo} from "../../redux/todoReducer/action";
+import { connect } from "react-redux";
 
 
 
@@ -7,28 +8,23 @@ class Todo extends Component{
 
 
 
-
-
-
-    
-
     OnchangeState = ({target: {value : newEtat}}) => {
         
         //this.setState({etat : newEtat});
-         this.props.updateTodo({...this.props,etat:newEtat})
+         this.props.updatedTodo({...this.props,etat:newEtat})
     }
 
     OnchangeLabel = ({target: {value : newLabel}}) => {
         console.log(newLabel);
         
         //this.setState({label : newLabel});
-        this.props.updateTodo({...this.props ,  label:newLabel})
+        this.props.updatedTodo({...this.props ,  label:newLabel})
 
     }
 
     handleDeleteTodo = () => {
 
-        console.log("id of the todo that was clicked  from the child comp:" , this.props.id);
+        console.log(" id of the todo that was clicked  from the child comp:" , this.props.id);
 
         this.props.deleteTodo(this.props.id); 
     }
@@ -36,7 +32,7 @@ class Todo extends Component{
 render(){
 
 
-    const {label} = this.props; 
+    const {label } = this.props; 
     const {etat} = this.props;
 
     console.log({props : this.props});
@@ -50,7 +46,7 @@ return(
             <option >PROGRESS_STATE.INPROGRESS</option>
          </select>
          <button type="submit" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={
-            this.handleDeleteTodo
+           () => this.props.deleteTodo(this.props.id)
          }>Delete</button>
 
 </>
@@ -62,4 +58,12 @@ return(
 }
 
 
-export default Todo;
+const mapDispatchToProps =({
+    deleteTodo,
+    updatedTodo
+})
+
+
+
+ 
+export default connect(null, mapDispatchToProps) (Todo) ;

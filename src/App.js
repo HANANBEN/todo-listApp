@@ -1,7 +1,6 @@
 
-import Todo from './components/todo/component'
-import TodoList from './components/todoList/component'
-import TodoListContainer from './components/todo'
+
+import TodoListContainer from './components/todoList/index' ;
 
 
 
@@ -44,7 +43,10 @@ class App extends Component {
     <div>
 
 
-<TodoListContainer ></TodoListContainer>
+<TodoListContainer />
+
+  
+
 
 </div>
     )
