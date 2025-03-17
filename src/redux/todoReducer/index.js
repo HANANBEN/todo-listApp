@@ -9,7 +9,7 @@ export const initialState ={
 todos: [
 
        {label:"Math" , id:1 , etat:PROGRESS_STATE.DONE},
-        {label:"Physique" , id:2, etat:PROGRESS_STATE.INPROGRESS}
+       {label:"Physique" , id:2, etat:PROGRESS_STATE.INPROGRESS}
 ],
 isLoading:false,
 
