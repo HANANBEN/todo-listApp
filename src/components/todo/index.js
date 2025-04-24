@@ -1,13 +1,8 @@
 import { connect } from "react-redux";
 import TodoList from "../todoList/component";
 
+const TodoContainer = () => {
+  return TodoContainer;
+};
 
-
-
-
-
-const TodoListContainer = connect()(TodoList); 
-
-export default TodoListContainer; 
-
-
+export default TodoContainer;
